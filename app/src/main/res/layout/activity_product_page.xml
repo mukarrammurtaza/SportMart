@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="match_parent"
+        android:layout_height="384dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageview"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        tools:text="price" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageview"
+        android:layout_toRightOf="@id/name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:text="rating" />
+
+    <TextView
+        android:id="@+id/Description"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        tools:text="Description" />
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="71dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/price"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@id/name"
+        android:clickable="true"
+        android:onClick="launchCart"
+        android:text="Buy" />
+
+    <TextView
+        android:id="@+id/DesText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/Description"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+</RelativeLayout>
+
