@@ -42,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.getPriceView().setText(String.valueOf(productList.get(position).getPrice()));
         holder.getRatingView().setText(String.valueOf(productList.get(position).getRating()));
         holder.getImageView().setImageResource((productList.get(position).getImage()));
-        //holder.getQuantityView().setText(String.valueOf(productList.get(position).getQuantity()));
+       // holder.getQuantityView().setText(String.valueOf(productList.get(position).getQuantity()));
         holder.getItemView().setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -54,6 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 intent.putExtra("price", holder.priceView.getText().toString());
                 intent.putExtra("rating", holder.ratingView.getText().toString());
                 intent.putExtra("image",(productList.get(position).getImage()));
+
                 //quantity
                 context.startActivity(intent);
             }
@@ -77,7 +78,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         private final TextView nameView;
         private final TextView ratingView;
         private final TextView priceView;
-       // private final  TextView QuantityView;
+       private final  TextView QuantityView;
         private final ImageView ImageView;
 
         public ViewHolder(View view) {
@@ -86,7 +87,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             nameView = (TextView) view.findViewById(R.id.name);
             ratingView = (TextView) view.findViewById(R.id.rating);
             priceView = (TextView) view.findViewById(R.id.price);
-           // QuantityView = (TextView) view.findViewById(R.id.quantity);
+           QuantityView = (TextView) view.findViewById(R.id.quantity);
             ImageView = (ImageView) view.findViewById(R.id.imageview);
 
         }
@@ -112,9 +113,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             return ImageView;
         }
 
-       // public TextView getQuantityView() {
-           // return QuantityView;
-       // }
+        public TextView getQuantityView() {return QuantityView;}
     }
 }
 

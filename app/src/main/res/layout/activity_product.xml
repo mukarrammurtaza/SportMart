@@ -33,16 +33,16 @@
         android:textSize="20sp"
         tools:text="price"
         />
+
     <TextView
         android:id="@+id/rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/imageview"
         android:layout_below="@+id/price"
+        android:layout_toEndOf="@id/imageview"
         android:textColor="@color/black"
         android:textSize="20sp"
-        tools:text="rating"
-        />
+        tools:text="rating" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="2dp"

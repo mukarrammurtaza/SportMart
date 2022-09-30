@@ -1,17 +1,16 @@
-/*
 package com.example.sportmart;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,52 +19,66 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cViewHolder> {
     private Context context;
     List<product> productList;
 
-    public CartAdapter(Activity context, List<product> productList) {
+    public CartAdapter(Context context, List<product> productList) {
         this.context = context;
         this.productList = productList;
-        Intent intent=context.getIntent();
 
     }
 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public cViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_cart, parent, false);
 
-        return new ViewHolder(view);
+        return new cViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull cViewHolder holder, int position) {
 
         holder.getNameView().setText(productList.get(position).getName());
         holder.getPriceView().setText(String.valueOf(productList.get(position).getPrice()));
-        holder.getRatingView().setText(String.valueOf(productList.get(position).getRating()));
+//        holder.getRatingView().setText(String.valueOf(productList.get(position).getRating()));
         holder.getImageView().setImageResource((productList.get(position).getImage()));
-        //holder.getQuantityView().setText(String.valueOf(productList.get(position).getQuantity()));
-        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+        holder.getQuantityView().setText(String.valueOf(productList.get(position).getQuantity()));
 
-                                                    @Override
-                                                    public void onClick(View v) {
-
-                                                       // Intent intent = new Intent(context, ProductActivity.class);
-                                                        // intent.putExtra()
-                                                        //intent.putExtra("name", holder.getNameView().getText().toString());
-                                                        //intent.putExtra("price", holder.priceView.getText().toString());
-                                                        //intent.putExtra("rating", holder.ratingView.getText().toString());
-                                                        //intent.putExtra("image",(productList.get(position).getImage()));
-                                                        //quantity
-                                                       // context.startActivity(intent);
-                                                    }
-
-                                                }
-
-        );
+//        holder.getItemView().setOnClickListener(new View.OnClickListener() {
+//TextView name = (TextView)findViewById(R.id.name);
+//        TextView price = (TextView)findViewById(R.id.price);
+//        TextView rating = (TextView)findViewById(R.id.rating);
+//        ImageView image=(ImageView)findViewById(R.id.imageview);
+//        Intent intent=getIntent();
+//        String recName=intent.getStringExtra("name");
+//        name.setText(recName);
+//        String recPrice=intent.getStringExtra("price");
+//        price.setText(recPrice);
+//        int newRecPrice=Integer.parseInt(recPrice);
+//        String recRating=intent.getStringExtra("rating");
+//        rating.setText(recRating);
+//        Bundle bundle=getIntent().getExtras();
+//        int resid=bundle.getInt("image");
+//        image.setImageResource(resid);
+//                                                    @Override
+//                                                    public void onClick(View v) {
+//
+//                                                        Intent intent = new Intent(context, ProductActivity.class);
+//                                                        // intent.putExtra()
+//                                                        intent.putExtra("name", holder.getNameView().getText().toString());
+//                                                        intent.putExtra("price", holder.priceView.getText().toString());
+//                                                        intent.putExtra("rating", holder.ratingView.getText().toString());
+//                                                        intent.putExtra("image",(productList.get(position).getImage()));
+//                                                        //quantity
+//                                                        context.startActivity(intent);
+//                                                    }
+//
+//                                                }
+//
+//        );
 
     }
 
@@ -77,7 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class cViewHolder extends RecyclerView.ViewHolder {
         private final View itemView;
         private final TextView nameView;
         private final TextView ratingView;
@@ -85,7 +98,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         private final  TextView QuantityView;
         private final ImageView ImageView;
 
-         ViewHolder(View view) {
+
+
+        public cViewHolder(View view) {
             super(view);
             itemView = view;
             nameView = (TextView) view.findViewById(R.id.name);
@@ -118,9 +133,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             return ImageView;
         }
 
-        public TextView getQuantityView() {return QuantityView;}
+         public TextView getQuantityView() {return QuantityView;}
     }
 }
 
 
-*/
