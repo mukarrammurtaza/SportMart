@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Cart {
 
-    private static Cart c = new Cart();
+    private  Cart c = new Cart();
 
     List<product>  cart = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class Cart {
             cart = new ArrayList<>();
     }
 
-    public static Cart getInstance() {
+    public  Cart getInstance() {
         return c;
     }
 

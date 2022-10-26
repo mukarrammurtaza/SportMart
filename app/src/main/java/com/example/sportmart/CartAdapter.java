@@ -17,18 +17,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cViewHolder> {
     private Context context;
-    List<product> productList;
+    ArrayList<product> productList;
 
-    public CartAdapter(Context context, List<product> productList) {
+    public CartAdapter(Context context, ArrayList<product> productList) {
         this.context = context;
         this.productList = productList;
 
     }
-
+    public void filterList() {
+        // below line is to add our filtered
+        // list in our course array list.
+        productList = new ArrayList<>();
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -47,38 +55,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cViewHolder> {
         holder.getImageView().setImageResource((productList.get(position).getImage()));
         holder.getQuantityView().setText(String.valueOf(productList.get(position).getQuantity()));
 
-//        holder.getItemView().setOnClickListener(new View.OnClickListener() {
-//TextView name = (TextView)findViewById(R.id.name);
-//        TextView price = (TextView)findViewById(R.id.price);
-//        TextView rating = (TextView)findViewById(R.id.rating);
-//        ImageView image=(ImageView)findViewById(R.id.imageview);
-//        Intent intent=getIntent();
-//        String recName=intent.getStringExtra("name");
-//        name.setText(recName);
-//        String recPrice=intent.getStringExtra("price");
-//        price.setText(recPrice);
-//        int newRecPrice=Integer.parseInt(recPrice);
-//        String recRating=intent.getStringExtra("rating");
-//        rating.setText(recRating);
-//        Bundle bundle=getIntent().getExtras();
-//        int resid=bundle.getInt("image");
-//        image.setImageResource(resid);
-//                                                    @Override
-//                                                    public void onClick(View v) {
-//
-//                                                        Intent intent = new Intent(context, ProductActivity.class);
-//                                                        // intent.putExtra()
-//                                                        intent.putExtra("name", holder.getNameView().getText().toString());
-//                                                        intent.putExtra("price", holder.priceView.getText().toString());
-//                                                        intent.putExtra("rating", holder.ratingView.getText().toString());
-//                                                        intent.putExtra("image",(productList.get(position).getImage()));
-//                                                        //quantity
-//                                                        context.startActivity(intent);
-//                                                    }
-//
-//                                                }
-//
-//        );
 
     }
 
@@ -134,7 +110,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.cViewHolder> {
         }
 
          public TextView getQuantityView() {return QuantityView;}
+
+
     }
+
 }
 
 

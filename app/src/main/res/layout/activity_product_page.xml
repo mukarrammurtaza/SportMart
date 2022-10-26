@@ -34,16 +34,6 @@
         tools:text="price" />
 
     <TextView
-        android:id="@+id/rating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageview"
-        android:layout_toRightOf="@id/name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        tools:text="rating" />
-
-    <TextView
         android:id="@+id/Description"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
@@ -101,7 +91,7 @@
     </androidx.cardview.widget.CardView>
 
     <NumberPicker
-       android:id="@+id/numpicker"
+        android:id="@+id/numpicker"
         android:layout_width="155dp"
         android:layout_height="53dp"
         android:layout_below="@id/addToCartButton"
@@ -115,8 +105,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/addToCartButton"
-        android:layout_centerHorizontal="true"
-        />
+        android:rating="3"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

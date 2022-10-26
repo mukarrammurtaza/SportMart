@@ -1,57 +1,71 @@
 package com.example.sportmart;
 
-public class product
-{
+public class product {
 
-        String name;
-        int price;
-        int image;
-        int rating;
-        int quantity;
-        public product(String name, int price, int image, int rating) //int quantity)
-        {
-            this.name = name;
-            this.price = price;
-            this.image = image;
-            this.rating = rating;
-            this.quantity=quantity;
-        }
+    String id;
+    String name;
+    int price;
+    int image;
+    int rating;
+    int quantity;
 
-        public String getName() {
-            return name;
-        }
+    public product() {
+        this.id = null;
+        this.name = null;
+        this.price = 0;
+        this.image = 0;
 
-        public void setName(String name) {
-            this.name = name;
-        }
+        this.quantity=0;
+    }
 
-        public int getPrice() {
-            return price;
-        }
+    public product(String name, int price, int image, int quantity) {
+        this.id = null;
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.quantity = quantity;
 
-        public void setPrice(int price) {
-            this.price = price;
-        }
+    }
 
-        public int getImage() {
-            return image;
-        }
+    public String getId() {
+        return id;
+    }
 
-        public void setImage(int image) {
-            this.image = image;
-        }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-        public int getRating() {
-            return rating;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setRating(int rating) {
-            this.rating = rating;
-        }
-    public int getQuantity() {return quantity;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setQuantity(int quantity) {this.quantity = quantity;}
+    public int getPrice() {
+        return price;
+    }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
 }
 
 

@@ -54,6 +54,18 @@
             android:text="Order Now"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
+        <Button
+            android:id="@+id/resetC"
+            android:text="reset Cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:clickable="true"
+            android:onClick="resetCart"
+            >
+
+
+        </Button>
     </RelativeLayout>
 
 </LinearLayout>

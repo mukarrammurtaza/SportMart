@@ -1,28 +1,32 @@
 package com.example.sportmart;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class MainActivity extends  AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     Context context;
- MyAdapter adp;
-    List<product> productList;
+    MyAdapter adp;
+    IProductDAO dao;
+    ArrayList<product> productList;
+    Logger logger;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = getApplicationContext();
@@ -39,30 +43,21 @@ public class MainActivity extends  AppCompatActivity{
             }
         });
 
+        logger = Logger.getLogger("MainActivity");
+        dao = new ProductDbDAO(this);
 
-        // recyclerView.setAdapter(new MyAdapter(this, productList));
+        productList = getAllProductsFromDB();// defined in ProductDbDAO
 
-        // recyclerView.addOnItemTouchListener;
-        productList.add(new product("American Football", 400, R.drawable.americanfootball, 10));
-        productList.add(new product("Football", 1000, R.drawable.football, 10));
-        productList.add(new product("Basketball", 2000, R.drawable.basketball, 10));
-        productList.add(new product("Shuttle Cock", 100, R.drawable.shuttlecock, 10));
-        productList.add(new product("Olympic Barbell", 4000, R.drawable.barbell, 10));
-        productList.add(new product("Boxing Gloves", 3000, R.drawable.boxinggloves, 10));
-        productList.add(new product("Skipping Rope", 500, R.drawable.skippingrope, 10));
-        productList.add(new product(" Badminton Racket", 1000, R.drawable.racket, 10));
-        productList.add(new product("Cricket Helmet", 4000, R.drawable.crickethelmet, 10));
-        productList.add(new product("Dumbbells 5 KG", 3000, R.drawable.dumbbells, 10));
-        productList.add(new product(" TreadMill", 500000, R.drawable.treadmill, 10));
-        productList.add(new product(" Table Tennis Racket", 1000, R.drawable.tabletennis, 10));
-        productList.add(new product("SkateBoard", 10000, R.drawable.skateboard, 10));
-        productList.add(new product("BaseBall Bat", 15000, R.drawable.baseballbat, 10));
+        if (productList.isEmpty()) {
+            AddInitialEntriesInDB();
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adp=new MyAdapter(this, productList);
+        adp = new MyAdapter(this, productList);
         recyclerView.setAdapter(adp);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -88,22 +83,47 @@ public class MainActivity extends  AppCompatActivity{
     }
 
     private void filter(String text) {
-        List<product> filteredlist = new ArrayList<product>();
+        List<product> filteredList = new ArrayList<product>();
 
 
         for (product item : productList) {
 
             if (item.getName().toLowerCase().contains(text.toLowerCase())) {
-                filteredlist.add(item);
+                filteredList.add(item);
             }
         }
-        if (filteredlist.isEmpty()) {
+        if (filteredList.isEmpty()) {
             Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
-            }
-                else {
+        } else {
 
-                    adp.filterList(filteredlist);
+            adp.filterList(filteredList);
         }
+    }
+
+    private ArrayList<product> getAllProductsFromDB() {
+        ArrayList<product> productList = dao.load();
+        logger.log(Level.INFO, "Loaded " + productList.size() + " entities from the DB");
+        return productList;
+    }
+
+    private void AddInitialEntriesInDB() {
+        logger.log(Level.INFO, "Items added to DB");
+        productList.add(new product("American Football", 400, R.drawable.americanfootball, 10));
+        productList.add(new product("Football", 1000, R.drawable.football, 10));
+        productList.add(new product("Basketball", 2000, R.drawable.basketball, 10));
+        productList.add(new product("Shuttle Cock", 100, R.drawable.shuttlecock, 10));
+        productList.add(new product("Olympic Barbell", 4000, R.drawable.barbell, 10));
+        productList.add(new product("Boxing Gloves", 3000, R.drawable.boxinggloves, 10));
+        productList.add(new product("Skipping Rope", 500, R.drawable.skippingrope, 10));
+        productList.add(new product(" Badminton Racket", 1000, R.drawable.racket, 10));
+        productList.add(new product("Cricket Helmet", 4000, R.drawable.crickethelmet, 10));
+        productList.add(new product("Dumbbells 5 KG", 3000, R.drawable.dumbbells, 10));
+        productList.add(new product(" TreadMill", 500000, R.drawable.treadmill, 10));
+        productList.add(new product(" Table Tennis Racket", 1000, R.drawable.tabletennis, 10));
+        productList.add(new product("SkateBoard", 10000, R.drawable.skateboard, 10));
+        productList.add(new product("BaseBall Bat", 15000, R.drawable.baseballbat, 10));
+
+        dao.save(productList);
     }
 
 }

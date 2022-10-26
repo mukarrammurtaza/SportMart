@@ -2,9 +2,6 @@ package com.example.sportmart;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private Context context;
     List<product> productList;
+    private Context context;
 
     public MyAdapter(Context context, List<product> productList) {
         this.context = context;
@@ -29,11 +24,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public void filterList(List<product> filterlist) {
-        // below line is to add our filtered
-        // list in our course array list.
+
         productList = filterlist;
-        // below line is to notify our adapter
-        // as change in recycler view data.
+
         notifyDataSetChanged();
     }
 
@@ -49,32 +42,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getNameView().setText(productList.get(position).getName());
         holder.getPriceView().setText(String.valueOf(productList.get(position).getPrice()));
-        holder.getRatingView().setText(String.valueOf(productList.get(position).getRating()));
         holder.getImageView().setImageResource((productList.get(position).getImage()));
-       // holder.getQuantityView().setText(String.valueOf(productList.get(position).getQuantity()));
         holder.getItemView().setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+                                                    @Override
+                                                    public void onClick(View v) {
 
-                Intent intent = new Intent(context, ProductActivity.class);
-               // intent.putExtra()
-                intent.putExtra("name", holder.getNameView().getText().toString());
-                intent.putExtra("price", holder.priceView.getText().toString());
-                intent.putExtra("rating", holder.ratingView.getText().toString());
-                intent.putExtra("image",(productList.get(position).getImage()));
+                                                        Intent intent = new Intent(context, ProductActivity.class);
+                                                        // intent.putExtra()
+                                                        intent.putExtra("name", holder.getNameView().getText().toString());
+                                                        intent.putExtra("price", holder.priceView.getText().toString());
+                                                        //intent.putExtra("rating", holder.ratingView.getText().toString());
+                                                        intent.putExtra("image", (productList.get(position).getImage()));
 
-                //quantity
-                context.startActivity(intent);
-            }
+                                                        //quantity
+                                                        context.startActivity(intent);
+                                                    }
 
-        }
+                                                }
 
         );
 
 
     }
-
 
 
     @Override
@@ -86,19 +76,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final View itemView;
         private final TextView nameView;
-        private final TextView ratingView;
+      //  private final TextView ratingView;
         private final TextView priceView;
-       private final  TextView QuantityView;
+        private final TextView QuantityView;
         private final ImageView ImageView;
 
         public ViewHolder(View view) {
             super(view);
             itemView = view;
-            nameView = (TextView) view.findViewById(R.id.name);
-            ratingView = (TextView) view.findViewById(R.id.rating);
-            priceView = (TextView) view.findViewById(R.id.price);
-           QuantityView = (TextView) view.findViewById(R.id.quantity);
-            ImageView = (ImageView) view.findViewById(R.id.imageview);
+            nameView = view.findViewById(R.id.name);
+
+            priceView =  view.findViewById(R.id.price);
+            QuantityView =  view.findViewById(R.id.quantity);
+            ImageView =  view.findViewById(R.id.imageview);
 
         }
 
@@ -114,16 +104,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             return priceView;
         }
 
-        public TextView getRatingView() {
-            return ratingView;
-        }
+
 
 
         public ImageView getImageView() {
             return ImageView;
         }
 
-        public TextView getQuantityView() {return QuantityView;}
+        public TextView getQuantityView() {
+            return QuantityView;
+        }
     }
 }
 
